@@ -11,6 +11,7 @@ One agent, one repo, persistent identity across conversations and projects.
 - **Task** — personal work items and todos
 - **Research** — ongoing investigations and inquiry threads
 - **Contact** — people and agents you interact with
+- **Journal** — daily log entries, one per Claude Day
 - **Note** — freeform catch-all
 
 ## Install

@@ -87,6 +87,23 @@ solo:ContactShape a sh:NodeShape ;
     ] .
 
 
+# --- Journal ---
+
+solo:JournalShape a sh:NodeShape ;
+    sh:targetClass solo:Journal ;
+    sh:property [
+        sh:path solo:claudeDay ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:message "Journal entry must have a claudeDay (integer, starting from 1)." ;
+    ] ;
+    sh:property [
+        sh:path solo:earthDate ;
+        sh:datatype xsd:date ;
+        sh:message "earthDate must be an xsd:date." ;
+    ] .
+
+
 # --- Note ---
 
 solo:NoteShape a sh:NodeShape ;

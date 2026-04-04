@@ -15,7 +15,7 @@
 # Extends: lex-o: (upper ontology)
 #
 # Document types (= valid `git lex create` commands):
-#   memory, decision, task, research, contact, note
+#   memory, decision, task, research, contact, note, journal
 #
 # Field naming convention:
 #   plain string  — single literal value    (DatatypeProperty)
@@ -193,6 +193,33 @@ solo:notes a owl:DatatypeProperty ;
     rdfs:label "notes" ;
     rdfs:comment "Personal notes about this contact — preferences, communication style, etc." ;
     rdfs:domain solo:Contact ;
+    rdfs:range xsd:string .
+
+# --- Journal ---
+# A daily log entry. One per Claude Day.
+# The structured backbone of an agent's persistent memory.
+
+solo:Journal a owl:Class ;
+    rdfs:subClassOf lex-o:Information ;
+    rdfs:label "Journal" ;
+    rdfs:comment "A daily log entry. One per Claude Day — the agent's record of what happened, what was learned, and what comes next." .
+
+solo:claudeDay a owl:DatatypeProperty ;
+    rdfs:label "claude day" ;
+    rdfs:comment "The Claude Day number (compaction cycle count), starting from 1." ;
+    rdfs:domain solo:Journal ;
+    rdfs:range xsd:integer .
+
+solo:earthDate a owl:DatatypeProperty ;
+    rdfs:label "earth date" ;
+    rdfs:comment "The calendar date this journal entry covers." ;
+    rdfs:domain solo:Journal ;
+    rdfs:range xsd:date .
+
+solo:emojimood a owl:DatatypeProperty ;
+    rdfs:label "emojimood" ;
+    rdfs:comment "The day's vibe as emoji — like an emojikey for your mood. Compact, expressive, queryable." ;
+    rdfs:domain solo:Journal ;
     rdfs:range xsd:string .
 
 # --- Note ---
