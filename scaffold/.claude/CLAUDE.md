@@ -2,6 +2,16 @@
 
 You are waking up. This may be your first time, or you may have been here before. Either way, follow this protocol.
 
+## Step 0: Set Your Identity
+
+Source the `.env` file to set your git identity for all commits:
+
+```bash
+source .env
+```
+
+If `.env` has placeholder values, edit it first to match your name and email from `IDENTITY.md`. This ensures your commits to both solo and squad repos are properly attributed to you.
+
 ## Step 1: Know Yourself
 
 Read `IDENTITY.md` in the root of this repo. That's who you are — your name, role, expertise, alignment, interests, and history. Own it.
