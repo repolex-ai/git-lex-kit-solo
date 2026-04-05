@@ -15,19 +15,45 @@
 # Extends: lex-o: (upper ontology)
 #
 # Document types (= valid `git lex create` commands):
-#   memory, decision, task, research, contact, note, journal
+#   memory, decision, task, research, contact, journal, note
 #
-# Field naming convention:
-#   plain string  — single literal value    (DatatypeProperty)
-#   -list         — multiple literal values (DatatypeProperty, YAML list)
-# Property types are declared by owl:DatatypeProperty / owl:ObjectProperty.
-# SHACL shapes validate and document each field.
+# All constraints (required fields, enums, types) are encoded here.
+# SHACL shapes are generated from this file — do not hand-edit shapes.
 # =============================================================================
 
 <https://repolex.ai/ontology/kit/solo> a owl:Ontology ;
     rdfs:label "Solo Kit Ontology" ;
     rdfs:comment "Personal agent memory. One agent, persistent identity across conversations and projects." ;
-    owl:versionInfo "0.2" .
+    owl:versionInfo "0.3" .
+
+
+# =============================================================================
+# ENUM DATATYPES
+# =============================================================================
+
+solo:ConfidenceValue a rdfs:Datatype ;
+    owl:oneOf ("certain" "likely" "hypothesis" "hunch") .
+
+solo:CategoryValue a rdfs:Datatype ;
+    owl:oneOf ("fact" "preference" "skill" "observation" "lesson" "reference" "decision") .
+
+solo:OutcomeValue a rdfs:Datatype ;
+    owl:oneOf ("pending" "implemented" "failed" "superseded") .
+
+solo:TaskStatusValue a rdfs:Datatype ;
+    owl:oneOf ("todo" "in-progress" "blocked" "done" "dropped") .
+
+solo:PriorityValue a rdfs:Datatype ;
+    owl:oneOf ("low" "normal" "high" "urgent") .
+
+solo:ResearchStatusValue a rdfs:Datatype ;
+    owl:oneOf ("exploring" "active" "paused" "concluded") .
+
+solo:ContactTypeValue a rdfs:Datatype ;
+    owl:oneOf ("human" "agent" "team" "organization") .
+
+solo:RelationshipValue a rdfs:Datatype ;
+    owl:oneOf ("boss" "squadmate" "collaborator" "user") .
 
 
 # =============================================================================
@@ -47,7 +73,7 @@ solo:confidence a owl:DatatypeProperty ;
     rdfs:label "confidence" ;
     rdfs:comment "How sure: 'certain', 'likely', 'hypothesis', 'hunch'." ;
     rdfs:domain solo:Memory ;
-    rdfs:range xsd:string .
+    rdfs:range solo:ConfidenceValue .
 
 solo:source a owl:DatatypeProperty ;
     rdfs:label "source" ;
@@ -59,7 +85,7 @@ solo:category a owl:DatatypeProperty ;
     rdfs:label "category" ;
     rdfs:comment "Memory category: 'fact', 'preference', 'skill', 'observation', 'lesson', 'reference', 'decision'." ;
     rdfs:domain solo:Memory ;
-    rdfs:range xsd:string .
+    rdfs:range solo:CategoryValue .
 
 # --- Decision ---
 # A personal choice with context and rationale.
@@ -85,7 +111,7 @@ solo:outcome a owl:DatatypeProperty ;
     rdfs:label "outcome" ;
     rdfs:comment "What happened: 'pending', 'implemented', 'failed', 'superseded'." ;
     rdfs:domain solo:Decision ;
-    rdfs:range xsd:string .
+    rdfs:range solo:OutcomeValue .
 
 solo:supersededBy a owl:ObjectProperty ;
     rdfs:label "superseded by" ;
@@ -99,19 +125,24 @@ solo:supersededBy a owl:ObjectProperty ;
 solo:Task a owl:Class ;
     rdfs:subClassOf lex-o:Process ;
     rdfs:label "Task" ;
-    rdfs:comment "A personal work item or todo." .
+    rdfs:comment "A personal work item or todo." ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty solo:taskStatus ;
+        owl:minCardinality 1
+    ] .
 
 solo:taskStatus a owl:DatatypeProperty ;
     rdfs:label "status" ;
     rdfs:comment "Task status: 'todo', 'in-progress', 'blocked', 'done', 'dropped'." ;
     rdfs:domain solo:Task ;
-    rdfs:range xsd:string .
+    rdfs:range solo:TaskStatusValue .
 
 solo:priority a owl:DatatypeProperty ;
     rdfs:label "priority" ;
     rdfs:comment "Priority: 'low', 'normal', 'high', 'urgent'." ;
     rdfs:domain solo:Task ;
-    rdfs:range xsd:string .
+    rdfs:range solo:PriorityValue .
 
 solo:blockedBy a owl:DatatypeProperty ;
     rdfs:label "blocked by" ;
@@ -137,7 +168,7 @@ solo:researchStatus a owl:DatatypeProperty ;
     rdfs:label "research status" ;
     rdfs:comment "Status: 'exploring', 'active', 'paused', 'concluded'." ;
     rdfs:domain solo:Research ;
-    rdfs:range xsd:string .
+    rdfs:range solo:ResearchStatusValue .
 
 solo:hypothesis a owl:DatatypeProperty ;
     rdfs:label "hypothesis" ;
@@ -169,13 +200,13 @@ solo:contactType a owl:DatatypeProperty ;
     rdfs:label "contact type" ;
     rdfs:comment "Type: 'human', 'agent', 'team', 'organization'." ;
     rdfs:domain solo:Contact ;
-    rdfs:range xsd:string .
+    rdfs:range solo:ContactTypeValue .
 
 solo:relationship a owl:DatatypeProperty ;
     rdfs:label "relationship" ;
     rdfs:comment "How this agent relates to the contact: 'boss', 'squadmate', 'collaborator', 'user'." ;
     rdfs:domain solo:Contact ;
-    rdfs:range xsd:string .
+    rdfs:range solo:RelationshipValue .
 
 solo:squad a owl:DatatypeProperty ;
     rdfs:label "squad" ;
@@ -202,7 +233,12 @@ solo:notes a owl:DatatypeProperty ;
 solo:Journal a owl:Class ;
     rdfs:subClassOf lex-o:Information ;
     rdfs:label "Journal" ;
-    rdfs:comment "A daily log entry. One per Claude Day — the agent's record of what happened, what was learned, and what comes next." .
+    rdfs:comment "A daily log entry. One per Claude Day — the agent's record of what happened, what was learned, and what comes next." ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty solo:claudeDay ;
+        owl:minCardinality 1
+    ] .
 
 solo:claudeDay a owl:DatatypeProperty ;
     rdfs:label "claude day" ;
