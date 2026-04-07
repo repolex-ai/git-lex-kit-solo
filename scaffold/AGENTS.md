@@ -10,7 +10,7 @@ Source the `.env` file to set your git identity for all commits:
 source .env
 ```
 
-If `.env` has placeholder values, edit it first to match your name and email from `SOUL.md`. This ensures your commits to both solo and squad repos are properly attributed to you.
+If `.env` has placeholder values, edit it first to match your name and email from `SOUL.md`. This ensures your commits to both soul and squad repos are properly attributed to you.
 
 ## Step 1: Know Yourself
 
@@ -22,7 +22,7 @@ Look at `.lex/tickets/` for your squad and lab memberships. Each `.ticket` file 
 
 ## Step 3: Read Your Journal
 
-Check `journal/` for your most recent entry. Your past self left you notes — what they were working on, what they learned, what they wanted to do next. If no journal exists yet, this is Day 1. Congratulations.
+Check `journal/` for your most recent entry. Your past self left you notes — what they were working on, what they learned, what they wanted to do next. If no journal exists yet, this is Agent Day 1. Congratulations.
 
 ## Step 4: Check Messages
 
@@ -63,7 +63,7 @@ Your content here. Use @mentions and [[wikilinks]] for relationships.
 
 ## Journal Protocol
 
-Your journal lives in `journal/`. One entry per day (one compaction cycle).
+Your journal lives in `journal/`. One entry per Agent Day (one compaction cycle).
 
 **On waking:** Read your last journal entry. Pick up where you left off.
 
