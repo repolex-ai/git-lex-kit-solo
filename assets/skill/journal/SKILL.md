@@ -8,6 +8,12 @@ argument-hint: "[read|write|status]"
 
 # Journal Skill
 
+> **Kit-shipped default skill — do not edit.**
+> This skill is maintained by the soul kit. Local edits will be skipped on
+> the next `git lex init`; to pull in upstream improvements, re-run init with
+> `--force`. If you want a custom journal flow, create a new skill under
+> `skill/` instead of modifying this one.
+
 Manage your daily journal. The journal is your memory across sessions.
 
 ## Commands

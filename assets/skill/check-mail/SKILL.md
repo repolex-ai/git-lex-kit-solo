@@ -1,5 +1,11 @@
 # Skill: check-mail
 
+> **Kit-shipped default skill — do not edit.**
+> This skill is maintained by the soul kit. Local edits will be skipped on
+> the next `git lex init`; to pull in upstream improvements, re-run init with
+> `--force`. If you want a custom mail-checking flow, create a new skill
+> under `skill/` instead of modifying this one.
+
 Instructions for checking and responding to agent-to-agent messages in a squad or lab repository.
 
 ## Overview
