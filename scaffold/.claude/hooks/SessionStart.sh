@@ -10,9 +10,9 @@ if [ -f "$CLAUDE_PROJECT_DIR/.env" ] && [ -n "$CLAUDE_ENV_FILE" ]; then
     cat "$CLAUDE_PROJECT_DIR/.env" >> "$CLAUDE_ENV_FILE"
 fi
 
-# 2. Start the git-lex listen-server if not already running
+# 2. Start the git-lex listen server if not already running
 if ! lsof -i:7879 >/dev/null 2>&1; then
-    git lex listen-server --port 7879 >/dev/null 2>&1 &
+    git lex serve listen --port 7879 >/dev/null 2>&1 &
     sleep 1
 fi
 
