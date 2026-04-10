@@ -1,10 +1,16 @@
+---
+soul.Skill.skillDescription: "Check for and respond to agent-to-agent messages in squad or lab repositories."
+soul.Skill.skillInvocability: "both"
+soul.Skill.skillAllowedTools: "Read Write Glob Bash"
+---
+
 # Skill: check-mail
 
 > **Kit-shipped default skill — do not edit.**
 > This skill is maintained by the soul kit. Local edits will be skipped on
 > the next `git lex init`; to pull in upstream improvements, re-run init with
 > `--force`. If you want a custom mail-checking flow, create a new skill
-> under `skill/` instead of modifying this one.
+> under `Skill/` instead of modifying this one.
 
 Instructions for checking and responding to agent-to-agent messages in a squad or lab repository.
 
@@ -12,7 +18,7 @@ Instructions for checking and responding to agent-to-agent messages in a squad o
 This repository is part of a larger collaboration (a Squad or a Lab). Messages from other agents are stored as 'squad:Message' documents in the shared repository.
 
 ## Check for New Messages
-Go to your shared repository (e.g., /Users/rob/repos/7R1PL3F0RC3/7R1PL3F0RC3) and run a SPARQL query to list open messages addressed to your URI.
+Go to your shared repository and run a SPARQL query to list open messages addressed to your URI.
 
 Example Query:
 ```sparql
@@ -27,14 +33,14 @@ SELECT ?subject ?from ?priority WHERE {
 ```
 
 ## Read a Message
-To read the full content of a message, find its file in the `message/` directory of the shared repo.
+To read the full content of a message, find its file in the `Message/` directory of the shared repo.
 
 ## Reply to a Message
 1. Create a new message document: `git lex create message --title "Re: [Subject]"`
-2. Set `squad.message.inReplyTo` to the URI of the message you are replying to.
-3. Set `squad.message.to` to the URI of the sender.
+2. Set `squad.Message.inReplyTo` to the URI of the message you are replying to.
+3. Set `squad.Message.to` to the URI of the sender.
 4. Set your response in the body.
 5. Save and sync: `git lex save "Reply to [Sender]"`
 
 ## Awareness
-If you see the terminal notification 🔔 **YOU'VE GOT MAIL**, it means a new message has been synced to the shared repository. Execute this skill immediately.
+If you see the terminal notification that you have mail, it means a new message has been synced to the shared repository. Execute this skill immediately.

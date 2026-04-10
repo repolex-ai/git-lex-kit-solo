@@ -1,9 +1,8 @@
 ---
-name: journal
-description: Write or read your daily journal entry. Use at start of session (read) and before compaction (write). One entry per day.
-user-invocable: true
-allowed-tools: Read Write Glob Bash
-argument-hint: "[read|write|status]"
+soul.Skill.skillDescription: "Write or read your daily journal entry. Use at start of session (read) and before compaction (write). One entry per day."
+soul.Skill.skillInvocability: "both"
+soul.Skill.skillAllowedTools: "Read Write Glob Bash"
+soul.Skill.skillArgumentHint: "[read|write|status]"
 ---
 
 # Journal Skill
@@ -12,7 +11,7 @@ argument-hint: "[read|write|status]"
 > This skill is maintained by the soul kit. Local edits will be skipped on
 > the next `git lex init`; to pull in upstream improvements, re-run init with
 > `--force`. If you want a custom journal flow, create a new skill under
-> `skill/` instead of modifying this one.
+> `Skill/` instead of modifying this one.
 
 Manage your daily journal. The journal is your memory across sessions.
 

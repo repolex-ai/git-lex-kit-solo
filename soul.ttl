@@ -390,6 +390,69 @@ soul:skillDomain a owl:DatatypeProperty ;
     rdfs:domain soul:Skill ;
     rdfs:range xsd:string .
 
+soul:skillDescription a owl:DatatypeProperty ;
+    rdfs:label "description" ;
+    rdfs:comment "What this skill does and when to use it." ;
+    rdfs:domain soul:Skill ;
+    rdfs:range xsd:string .
+
+soul:skillInvocability a owl:DatatypeProperty ;
+    rdfs:label "invocability" ;
+    rdfs:comment "Who can invoke this skill: 'user' (slash command), 'agent' (auto-triggered), 'both'." ;
+    rdfs:domain soul:Skill ;
+    rdfs:range xsd:string .
+
+soul:skillAllowedTools a owl:DatatypeProperty ;
+    rdfs:label "allowedTools" ;
+    rdfs:comment "Space-separated list of tools the skill may use without confirmation." ;
+    rdfs:domain soul:Skill ;
+    rdfs:range xsd:string .
+
+soul:skillArgumentHint a owl:DatatypeProperty ;
+    rdfs:label "argumentHint" ;
+    rdfs:comment "Hint shown during autocomplete (e.g. '[read|write|status]')." ;
+    rdfs:domain soul:Skill ;
+    rdfs:range xsd:string .
+
+# --- Subagent ---
+# A specialized agent the soul can delegate to. Maps to substrate-specific
+# subagent definitions (e.g. .claude/agents/ for Claude Code).
+
+soul:Subagent a owl:Class ;
+    rdfs:subClassOf lex-o:Information ;
+    rdfs:label "Subagent" ;
+    rdfs:comment "A specialized agent the soul can spawn for focused tasks." .
+
+soul:subagentId a owl:DatatypeProperty ;
+    rdfs:label "subagentId" ;
+    rdfs:comment "Unique identifier for this subagent." ;
+    rdfs:domain soul:Subagent ;
+    rdfs:range xsd:string .
+
+soul:subagentDescription a owl:DatatypeProperty ;
+    rdfs:label "description" ;
+    rdfs:comment "When to delegate to this subagent. Used for auto-delegation matching." ;
+    rdfs:domain soul:Subagent ;
+    rdfs:range xsd:string .
+
+soul:subagentTools a owl:DatatypeProperty ;
+    rdfs:label "tools" ;
+    rdfs:comment "Comma-separated tools the subagent can use." ;
+    rdfs:domain soul:Subagent ;
+    rdfs:range xsd:string .
+
+soul:subagentModel a owl:DatatypeProperty ;
+    rdfs:label "model" ;
+    rdfs:comment "Model to use: 'sonnet', 'opus', 'haiku', or 'inherit'." ;
+    rdfs:domain soul:Subagent ;
+    rdfs:range xsd:string .
+
+soul:subagentMaxTurns a owl:DatatypeProperty ;
+    rdfs:label "maxTurns" ;
+    rdfs:comment "Maximum agentic turns before the subagent stops." ;
+    rdfs:domain soul:Subagent ;
+    rdfs:range xsd:integer .
+
 # --- Mantra ---
 # A phrase or word the agent carries. Random, out-of-distribution seed.
 # A new one might be auto-added to journal entries.
