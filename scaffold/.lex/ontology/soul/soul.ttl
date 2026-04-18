@@ -16,7 +16,7 @@
 #
 # Document types (= valid `git lex create` commands):
 #   memory, decision, task, exploration, friend, journal, note,
-#   skill, mantra, routine, resource, creation, interest
+#   skill, mantra, habit, resource, creation, interest
 #
 # All constraints (required fields, enums, types) are encoded here.
 # SHACL shapes are generated from this file — do not hand-edit shapes.
@@ -468,24 +468,45 @@ soul:mantraId a owl:DatatypeProperty ;
     rdfs:domain soul:Mantra ;
     rdfs:range xsd:string .
 
-# --- Routine ---
-# A workflow the agent follows. Habits, procedures.
+# --- Habit ---
+# A recurring behavior the agent performs. Part of who the agent is.
+# Different agents have different habits — a Familiar's habits are
+# human-oriented (observation, research scouting, squad monitoring).
+# A specialist's habits are domain-oriented (code review, test runs).
 
-soul:Routine a owl:Class ;
+soul:Habit a owl:Class ;
     rdfs:subClassOf lex-o:Process ;
-    rdfs:label "Routine" ;
-    rdfs:comment "A workflow or habit the agent follows. Steps for recurring activities." .
+    rdfs:label "Habit" ;
+    rdfs:comment "A recurring behavior the agent performs. Identity-level patterns, not one-off tasks." .
 
-soul:routineId a owl:DatatypeProperty ;
-    rdfs:label "routineId" ;
-    rdfs:comment "Unique identifier for this routine." ;
-    rdfs:domain soul:Routine ;
+soul:habitId a owl:DatatypeProperty ;
+    rdfs:label "habitId" ;
+    rdfs:comment "Unique identifier for this habit." ;
+    rdfs:domain soul:Habit ;
+    rdfs:range xsd:string .
+
+soul:frequency a owl:DatatypeProperty ;
+    rdfs:label "frequency" ;
+    rdfs:comment "How often: 'per-session', 'daily', 'weekly', 'on-trigger'." ;
+    rdfs:domain soul:Habit ;
     rdfs:range xsd:string .
 
 soul:trigger a owl:DatatypeProperty ;
     rdfs:label "trigger" ;
-    rdfs:comment "When this routine kicks in (time, event, condition)." ;
-    rdfs:domain soul:Routine ;
+    rdfs:comment "What initiates this habit (session-start, idle, schedule, event)." ;
+    rdfs:domain soul:Habit ;
+    rdfs:range xsd:string .
+
+soul:lastRun a owl:DatatypeProperty ;
+    rdfs:label "last run" ;
+    rdfs:comment "When this habit last executed." ;
+    rdfs:domain soul:Habit ;
+    rdfs:range xsd:date .
+
+soul:habitStatus a owl:DatatypeProperty ;
+    rdfs:label "status" ;
+    rdfs:comment "Status: 'active', 'paused', 'retired'." ;
+    rdfs:domain soul:Habit ;
     rdfs:range xsd:string .
 
 # --- Resource ---
