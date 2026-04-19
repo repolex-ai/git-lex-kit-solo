@@ -377,12 +377,12 @@ soul:Skill a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty soul:skillId ;
-        owl:cardinality 1
+        owl:minCardinality 1
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty soul:skillDescription ;
-        owl:cardinality 1
+        owl:minCardinality 1
     ] .
 
 soul:skillId a owl:DatatypeProperty ;
