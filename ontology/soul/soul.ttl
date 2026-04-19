@@ -25,7 +25,7 @@
 <https://repolex.ai/ontology/kit/soul> a owl:Ontology ;
     rdfs:label "Soul Kit Ontology" ;
     rdfs:comment "An agent's persistent mind. Identity, memory, knowledge, and personality across sessions." ;
-    owl:versionInfo "0.4" .
+    owl:versionInfo "0.5" .
 
 
 # =============================================================================
@@ -61,6 +61,9 @@ soul:RelationshipValue a rdfs:Datatype ;
 
 soul:SkillLevelValue a rdfs:Datatype ;
     owl:oneOf ("learning" "competent" "fluent" "expert") .
+
+soul:SkillInvocabilityValue a rdfs:Datatype ;
+    owl:oneOf ("user" "agent" "both") .
 
 
 # =============================================================================
@@ -370,7 +373,17 @@ soul:relatedTo a owl:ObjectProperty ;
 soul:Skill a owl:Class ;
     rdfs:subClassOf lex-o:Information ;
     rdfs:label "Skill" ;
-    rdfs:comment "A capability the agent has — a tool, technique, or area of competence." .
+    rdfs:comment "A capability the agent has — a tool, technique, or area of competence." ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty soul:skillId ;
+        owl:cardinality 1
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty soul:skillDescription ;
+        owl:cardinality 1
+    ] .
 
 soul:skillId a owl:DatatypeProperty ;
     rdfs:label "skillId" ;
@@ -400,7 +413,7 @@ soul:skillInvocability a owl:DatatypeProperty ;
     rdfs:label "invocability" ;
     rdfs:comment "Who can invoke this skill: 'user' (slash command), 'agent' (auto-triggered), 'both'." ;
     rdfs:domain soul:Skill ;
-    rdfs:range xsd:string .
+    rdfs:range soul:SkillInvocabilityValue .
 
 soul:skillAllowedTools a owl:DatatypeProperty ;
     rdfs:label "allowedTools" ;
