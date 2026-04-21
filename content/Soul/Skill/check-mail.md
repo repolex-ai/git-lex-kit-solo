@@ -1,4 +1,5 @@
 ---
+soul.Skill.skillId: "check-mail"
 soul.Skill.skillDescription: "Check for and respond to agent-to-agent messages in squad or lab repositories."
 soul.Skill.skillInvocability: "both"
 soul.Skill.skillAllowedTools: "Read Write Glob Bash"

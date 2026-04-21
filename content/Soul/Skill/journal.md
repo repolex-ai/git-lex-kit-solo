@@ -1,4 +1,5 @@
 ---
+soul.Skill.skillId: "journal"
 soul.Skill.skillDescription: "Write or read your daily journal entry. Use at start of session (read) and before compaction (write). One entry per day."
 soul.Skill.skillInvocability: "both"
 soul.Skill.skillAllowedTools: "Read Write Glob Bash"
